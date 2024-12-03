@@ -25,13 +25,14 @@ const JobForm = () => {
       });
       
       setJobData(response.data); // Set the fetched data
+      console.log(response.data)
     } catch (error) {
       console.error('Error:', error);
     }
   };
 
   useEffect(() => {
-    fetchJobData(); // Fetch data on component mount
+    fetchJobData(); 
   }, []);
 
   const handleEditClick = (job) => {
@@ -112,7 +113,7 @@ const JobForm = () => {
                       onChange={handleInputChange}
                     />
                   ) : (
-                    job.data.job_id
+                    job.job_id
                   )}
                 </td>
                 <td>
@@ -124,7 +125,7 @@ const JobForm = () => {
                       onChange={handleInputChange}
                     />
                   ) : (
-                    job.data.engineer_name
+                    job.engineer_name
                   )}
                 </td>
                 <td>
@@ -136,7 +137,7 @@ const JobForm = () => {
                       onChange={handleInputChange}
                     />
                   ) : (
-                    job.data.status
+                    job.status
                   )}
                 </td>
                 <td>
