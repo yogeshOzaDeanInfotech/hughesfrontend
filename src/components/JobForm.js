@@ -20,7 +20,7 @@ const JobForm = () => {
     try {
       const response = await axios.get('https://kizeo-webhook-testing.onrender.com/webhook-data', {
         headers: {
-          Authorization: `Basic ${btoa(username + ":" + password)}`, // Add the Authorization header for Basic Auth
+          Authorization: `Basic ${btoa(username + ":" + password)}`,
         }
       });
       
@@ -39,10 +39,10 @@ const JobForm = () => {
     setIsEditing(true);
     setEditedData({
       _id: job._id,
-      job_id: job.data.job_id,
-      engineer_name: job.data.engineer_name,
-      status: job.data.status
-    }); // Set the selected job's data for editing
+      job_id: job.job_id,
+      engineer_name: job.engineer_name,
+      status: job.status
+    });
   };
 
   const handleInputChange = (e) => {
@@ -85,7 +85,7 @@ const JobForm = () => {
     }
   };
   
-
+console.log(editedData)
   return (
     <div className="container">
       <h1>Job Data</h1>
@@ -156,38 +156,6 @@ const JobForm = () => {
           )}
         </tbody>
       </table>
-
-      {/* Show Edit Form */}
-      {isEditing && (
-        <div style={{ marginTop: '20px' }}>
-          <h2>Edit Job Data</h2>
-          <label>Job ID</label>
-          <input
-            type="text"
-            name="job_id"
-            value={editedData.job_id}
-            onChange={handleInputChange}
-          />
-          <br />
-          <label>Engineer Name</label>
-          <input
-            type="text"
-            name="engineer_name"
-            value={editedData.engineer_name}
-            onChange={handleInputChange}
-          />
-          <br />
-          <label>Status</label>
-          <input
-            type="text"
-            name="status"
-            value={editedData.status}
-            onChange={handleInputChange}
-          />
-          <br />
-          <button onClick={handleSaveClick}>Save Changes</button>
-        </div>
-      )}
     </div>
   );
 };
